@@ -1,0 +1,33 @@
+{% load nagios %}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>Nagios</strong>
+        <a href="{{ nagios_base_url }}status.cgi?host={{ object.name }}" class="btn btn-xs btn-primary"
+            style="float: right;">
+            Open in Nagios
+        </a>
+    </div>
+    <table class="table table-hover panel-body attr-table">
+        <tr>
+            <td><a href='{{ nagios_base_url }}status.cgi?host={{ object.name }}'>Host Status</a>
+            </td>
+            <td>
+                <span
+                    class="label label-{{ nagios.state|nagios_status_color }}">{{ nagios.state|nagios_status_string }}</span>
+            </td>
+            <td></td>
+        </tr>
+        {% for service in nagios.services_with_info %}
+        <tr>
+            <td><a
+                    href='{{ nagios_base_url }}extinfo.cgi?type=2&host={{ object.name }}&service={{ service.0 }}'>{{ service.0 }}</a>
+            </td>
+            <td>
+                <span
+                    class="label label-{{ service.1|nagios_status_color }}">{{ service.1|nagios_status_string }}</span>
+            </td>
+            <td>{{ service.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
