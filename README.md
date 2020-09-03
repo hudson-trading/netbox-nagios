@@ -2,6 +2,8 @@
 
 Plugin to show Nagios host and service status in NetBox on the device page.
 
+![Preview](docs/images/preview.png)
+
 ## Installation
 
 Add the plugin to your `PLUGINS` list in `configuration.py` and configure at
