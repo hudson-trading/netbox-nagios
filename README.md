@@ -1,6 +1,6 @@
 # Nagios Status in NetBox
 
-Plugin to show Nagios host and service status in NetBox on the device page.
+Plugin to show Nagios host and service status in NetBox on the device and VM page.
 
 ![Preview](docs/images/preview.png)
 

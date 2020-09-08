@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] - 2020-09-08
+### Added
+- Also show the status for Virtual Machines.
+
 ## [0.0.4] - 2020-07-23
 ### Added
 - Added settings to make the plugin more generic.

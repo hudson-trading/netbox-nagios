@@ -6,8 +6,6 @@ from . import livestatus
 
 
 class NagiosStatus(PluginTemplateExtension):
-    model = "dcim.device"
-
     def __init__(self, context):
         super().__init__(context)
         self.settings = self.context["settings"].PLUGINS_CONFIG["netbox_nagios"]
@@ -52,4 +50,15 @@ class NagiosStatus(PluginTemplateExtension):
         return self.render("device_nagios_box.html", extra_context=extra_context)
 
 
-template_extensions = [NagiosStatus]  # pylint: disable=invalid-name
+class NagiosStatusDevice(NagiosStatus):
+    model = "dcim.device"
+
+
+class NagiosStatusVM(NagiosStatus):
+    model = "virtualization.virtualmachine"
+
+
+template_extensions = [  # pylint: disable=invalid-name
+    NagiosStatusDevice,
+    NagiosStatusVM,
+]
