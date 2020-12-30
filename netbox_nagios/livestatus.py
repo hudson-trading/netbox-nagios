@@ -11,6 +11,7 @@ def hoststatus(hostname: str, livestatus_host: str, livestatus_port: int):
         "GET hosts\n"
         + "Filter: host_name = %s\n" % hostname  #
         + "OutputFormat: json\n"
+        + "\n"
     )
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
