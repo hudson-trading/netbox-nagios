@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 2020-12-30
+### Fixed
+- Additional \n for icinga2 livestatus on query needed.
+
 ## [0.0.5] - 2020-09-08
 ### Added
 - Also show the status for Virtual Machines.
