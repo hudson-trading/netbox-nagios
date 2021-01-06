@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 2021-01-06
+### Fixed
+- Correctly deal with devices that don't have names.
+
 ## [0.0.6] - 2020-12-30
 ### Fixed
 - Additional \n for icinga2 livestatus on query needed.

@@ -9,7 +9,7 @@ class NagiosStatus(PluginTemplateExtension):
     def __init__(self, context):
         super().__init__(context)
         self.settings = self.context["settings"].PLUGINS_CONFIG["netbox_nagios"]
-        self.hostname = self.context["object"].name
+        self.hostname = self.context["object"].name or ""  # name can be None.
         self.livestatus_host = self.get_livestatus_host()
         self.livestatus_port = self.settings["livestatus_port"]
         self.nagios_base_url = self.get_nagios_base_url()
