@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 2022-01-22
+### Fixed
+- Updated netbox_nagios to work on Netbox 3
+
 ## [0.0.7] - 2021-01-06
 ### Fixed
 - Correctly deal with devices that don't have names.

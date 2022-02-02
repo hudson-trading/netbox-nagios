@@ -5,7 +5,7 @@ register = template.Library()  # pylint: disable=invalid-name
 
 @register.filter(is_safe=True)
 def nagios_status_color(value: int):
-    local_colors = {0: "success", 1: "warning", 2: "danger", 3: "info"}
+    local_colors = {0: "success", 1: "warning", 2: "danger", 3: "gray"}
     return local_colors.get(value, "default")
 
 

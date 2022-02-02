@@ -2,7 +2,7 @@ try:
     from extras.plugins import PluginConfig
 except ImportError:
     # Dummy so install of wheel works without Netbox.
-    class PluginConfig(object):
+    class PluginConfig:
         pass
 
 
