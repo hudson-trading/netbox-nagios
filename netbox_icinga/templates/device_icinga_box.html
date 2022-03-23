@@ -1,0 +1,25 @@
+{% load icinga %}
+
+<div class="card">
+    <h5 class="card-header">Icinga</h5>
+    <div class="card-body">
+        <table class="table table-hover attr-table">
+            <tr>
+                <td>
+                    <a href='{{ icinga_base_url }}status.cgi?host={{ object.name }}' target="_blank">
+                        <span class="mdi mdi-server-network" aria-hidden="true"></span> Host Status
+                    </a>
+                </td>
+                <td><span class="badge bg-{{ icinga.state|icinga_status_color }}">{{ icinga.state|icinga_status_string }}</span></td>
+                <td></td>
+            </tr>
+            {% for service in icinga.services_with_info %}
+            <tr>
+                <td><a href='{{ icinga_base_url }}extinfo.cgi?type=2&host={{ object.name }}&service={{ service.0 }}' target="_blank">{{ service.0 }}</a></td>
+                <td><span class="badge bg-{{ service.1|icinga_status_color }}">{{ service.1|icinga_status_string }}</span></td>
+                <td>{{ service.3 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

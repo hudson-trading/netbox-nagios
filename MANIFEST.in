@@ -1,1 +1,1 @@
-graft netbox_nagios/templates
+graft netbox_icinga/templates

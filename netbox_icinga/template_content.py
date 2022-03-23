@@ -5,62 +5,62 @@ from extras.plugins import PluginTemplateExtension  # pylint: disable=import-err
 from . import livestatus
 
 
-class NagiosStatus(PluginTemplateExtension):
+class icingaStatus(PluginTemplateExtension):
     def __init__(self, context):
         super().__init__(context)
-        self.settings = self.context["settings"].PLUGINS_CONFIG["netbox_nagios"]
+        self.settings = self.context["settings"].PLUGINS_CONFIG["netbox_icinga"]
         self.hostname = self.context["object"].name or ""  # name can be None.
         self.livestatus_host = self.get_livestatus_host()
         self.livestatus_port = self.settings["livestatus_port"]
-        self.nagios_base_url = self.get_nagios_base_url()
+        self.icinga_base_url = self.get_icinga_base_url()
 
     def get_livestatus_host(self):
-        """Uses settings and potential overrides to determine the Nagios host."""
+        """Uses settings and potential overrides to determine the icinga host."""
         for regex, livestatus_host in self.settings["livestatus_host_overrides"]:
             if re.search(regex, self.hostname):
                 return livestatus_host
         return self.settings["livestatus_host"]
 
-    def get_nagios_base_url(self):
-        """Uses settings and potential overrides to determine the Nagios url."""
-        for regex, nagios_base_url in self.settings["nagios_base_url_overrides"]:
+    def get_icinga_base_url(self):
+        """Uses settings and potential overrides to determine the icinga url."""
+        for regex, icinga_base_url in self.settings["icinga_base_url_overrides"]:
             if re.search(regex, self.hostname):
-                return nagios_base_url
-        return self.settings["nagios_base_url"]
+                return icinga_base_url
+        return self.settings["icinga_base_url"]
 
     def buttons(self):
         """Adds an extra button at the top of the bage."""
         return self.render(
-            "device_nagios_buttons.html",
-            extra_context={"nagios_base_url": self.nagios_base_url},
+            "device_icinga_buttons.html",
+            extra_context={"icinga_base_url": self.icinga_base_url},
         )
 
     def right_page(self):
         """Adds a status table to the page."""
         extra_context = {
-            "nagios_base_url": self.nagios_base_url,
+            "icinga_base_url": self.icinga_base_url,
         }
         try:
-            extra_context["nagios"] = livestatus.hoststatus(
+            extra_context["icinga"] = livestatus.hoststatus(
                 self.hostname,
                 self.livestatus_host,
                 self.livestatus_port,
             )
         except Exception:  # pylint: disable=broad-except
-            # Be very defensive so that broken Nagios doesn't break Netbox.
+            # Be very defensive so that broken icinga doesn't break Netbox.
             pass
-        return self.render("device_nagios_box.html", extra_context=extra_context)
+        return self.render("device_icinga_box.html", extra_context=extra_context)
 
 
-class NagiosStatusDevice(NagiosStatus):
+class icingaStatusDevice(icingaStatus):
     model = "dcim.device"
 
 
-class NagiosStatusVM(NagiosStatus):
+class icingaStatusVM(icingaStatus):
     model = "virtualization.virtualmachine"
 
 
 template_extensions = [  # pylint: disable=invalid-name
-    NagiosStatusDevice,
-    NagiosStatusVM,
+    icingaStatusDevice,
+    icingaStatusVM,
 ]

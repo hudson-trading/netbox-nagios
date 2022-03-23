@@ -6,7 +6,7 @@ BUFFER_SIZE = 4096  # bytes
 
 
 def hoststatus(hostname: str, livestatus_host: str, livestatus_port: int):
-    """Fetches livestatus from Nagios about hostname."""
+    """Fetches livestatus from icinga about hostname."""
     query = (
         "GET hosts\n"
         + "Filter: host_name = %s\n" % hostname

@@ -9,40 +9,40 @@ except ImportError:
 from .version import VERSION
 
 
-class NetboxNagiosConfig(PluginConfig):
+class NetboxIcingaConfig(PluginConfig):
     """
-    This class defines attributes for the NetBox Nagios plugin.
+    This class defines attributes for the NetBox icinga plugin.
     """
 
     # Plugin package name
-    name = "netbox_nagios"
+    name = "netbox_icinga"
 
     # Human-friendly name and description
-    verbose_name = "Nagios"
-    description = "Plugin to show Nagios status in Netbox"
+    verbose_name = "icinga"
+    description = "Plugin to show Icinga status in Netbox"
 
     # Plugin version
     version = VERSION
 
     # Plugin author
-    author = "Hudson River Trading LLC"
-    author_email = "opensource@hudson-trading.com"
+    author = "Izabela1337 forked from hudson-trading/netbox-icinga"
+    author_email = "totallynotspykle@gmail.com"
 
     # Configuration parameters that MUST be defined by the user (if any)
-    required_settings = ["livestatus_host", "nagios_base_url"]
+    required_settings = ["livestatus_host", "icinga_base_url"]
 
     # Default configuration parameter values, if not set by the user
     default_settings = {
         "livestatus_host_overrides": [],
         "livestatus_port": 6557,
-        "nagios_base_url_overrides": [],
+        "icinga_base_url_overrides": [],
     }
 
     # Base URL path. If not set, the plugin name will be used.
-    base_url = "nagios"
+    base_url = "icinga"
 
     # Caching config
     caching_config = {}
 
 
-config = NetboxNagiosConfig  # pylint: disable=invalid-name
+config = NetboxIcingaConfig  # pylint: disable=invalid-name
