@@ -34,7 +34,7 @@ class NetboxIcingaConfig(PluginConfig):
     # Default configuration parameter values, if not set by the user
     default_settings = {
         "livestatus_host_overrides": [],
-        "livestatus_port": 6557,
+        "livestatus_port": 5665,
         "icinga_base_url_overrides": [],
     }
 

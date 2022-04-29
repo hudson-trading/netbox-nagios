@@ -13,6 +13,8 @@
                 <td><span class="badge bg-{{ icinga.state|icinga_status_color }}">{{ icinga.state|icinga_status_string }}</span></td>
                 <td></td>
             </tr>
+            {{ service }}
+            {{ icinga }}
             {% for service in icinga.services_with_info %}
             <tr>
                 <td><a href='{{ icinga_base_url }}extinfo.cgi?type=2&host={{ object.name }}&service={{ service.0 }}' target="_blank">{{ service.0 }}</a></td>
