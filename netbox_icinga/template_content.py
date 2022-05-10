@@ -37,8 +37,10 @@ class icingaStatus(PluginTemplateExtension):
 
     def right_page(self):
         """Adds a status table to the page."""
+        status_whitelist = ["active", "output"]
         extra_context = {
             "icinga_base_url": self.icinga_base_url,
+            "status_whitelist": status_whitelist
         }
         try:
             extra_context["icinga"] = livestatus.hoststatus(
