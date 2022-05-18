@@ -10,20 +10,15 @@
                         <span class="mdi mdi-server-network" aria-hidden="true"></span> Host Status
                     </a>
                 </td>
-                <td><span class="badge bg-green">{{ icinga.results.0.attrs.last_check_result.state|icinga_status_string }}</span></td>
+                <td><span class="badge bg-{{ icinga.results.0.attrs.last_check_result.state|icinga_status_color }}">{{ icinga.results.0.attrs.last_check_result.state|icinga_status_string }}</span></td>
                 <td></td>
-            </tr>
-            <!-- {{ icinga.results.0.attrs.last_check_result }} -->
-            {% for service in status_whitelist %}
+            </tr> 
+            {% for result in icinga.results %}
             <tr>
-                <td><a href='https://{{ icinga_base_url }}extinfo.cgi?type=2&host={{ object.name }}&service={{ service.0 }}' target="_blank">{{ service }}</a></td>
-                <td><span class="badge bg-green">{{ icinga.results.0.attrs.last_check_result.|add:service }}</span></td>
+                <td><a href='https://{{ icinga_base_url }}extinfo.cgi?type=2&host={{ object.name }}&service={{ service.0 }}' target="_blank">{{ result.attrs.name }}</a></td>
+                <td><span class="badge bg-{{ result.attrs.last_check_result.state|icinga_status_color }}">{{ result.attrs.last_check_result.state|icinga_status_string }}</span></td>
+                <td>{{ result.attrs.last_check_result.output }}</td>
             </tr>
-            {% endfor %}
-            {% for service in icinga.results.0.attrs.last_check_result %}
-            <tr>
-                <td><a href='https://{{ icinga_base_url }}extinfo.cgi?type=2&host={{ object.name }}&service={{ service.0 }}' target="_blank">{{ service }}</a></td>
-                <td>{{ service|icinga_status_string }}</td>
             </tr>
             {% endfor %}
         </table>
