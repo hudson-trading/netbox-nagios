@@ -11,6 +11,8 @@ class icingaStatus(PluginTemplateExtension):
         self.settings = self.context["settings"].PLUGINS_CONFIG["netbox_icinga"]
         self.hostname = self.context["object"].name or ""  # name can be None.
         self.livestatus_port = self.settings["livestatus_port"]
+        self.icinga_username = self.settings["icinga_username"]
+        self.icinga_password = self.settings["icinga_password"]
         self.icinga_base_url = self.get_icinga_base_url()
 
     def get_icinga_base_url(self):
@@ -37,6 +39,8 @@ class icingaStatus(PluginTemplateExtension):
                 self.hostname,
                 self.icinga_base_url,
                 self.livestatus_port,
+                self.icinga_username,
+                self.icinga_password
             )
         except Exception:  # pylint: disable=broad-except
             # Be very defensive so that broken icinga doesn't break Netbox.

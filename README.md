@@ -7,7 +7,7 @@ Plugin to show icinga host and service status in NetBox on the device and device
 ## Installation
 
 Add the plugin to your `PLUGINS` list in `configuration.py` and configure at
-least `icinga_base_url` option in `PLUGINS_CONFIG`:
+least `icinga_base_url`, `icinga_username` and `icinga_password` option in `PLUGINS_CONFIG`:
 
 ```python
 PLUGINS = [
@@ -16,10 +16,13 @@ PLUGINS = [
 
 PLUGINS_CONFIG = {
     "netbox_icinga": {
-        "icinga_base_url": "icinga.example.com"
+        "icinga_base_url" : "icinga.example.com",
+        "icinga_username" : "username",
+        "icinga_password" : "password"
     },
 }
 ```
+*(authorization via X.509 client certificate is not yet supported)*
 
 Optional options are `livestatus_port` (defaults to 5665)
 `icinga_base_url_overrides` (both default to an
